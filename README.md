@@ -18,7 +18,7 @@ The filtering script parsed the GENEPOP header, standardized locus names by remo
 
 Directional relative migration was estimated from the neutral GENEPOP file with the function `divMigrate()` in the `diveRsity` package. The analysis was run with 1000 bootstrap replicates and without filtering weak connections prior to estimation. The resulting matrix of relative migration values (`dRelMig`) was used as the connectivity matrix for subsequent visualization and spatial interpretation. Before plotting, diagonal values were set to zero, and edge colours were scaled according to connection strength to emphasize relative differences in inferred gene flow among sampled localities.
 
-Associated script: [`filter_neutral_loci_and_estimate_connectivity.R`](filter_neutral_loci_and_estimate_connectivity.R).
+Associated script: [`/filter_neutral_loci_and_estimate_connectivity.R`](https://github.com/kittlein/Connectivity/blob/master//filter_neutral_loci_and_estimate_connectivity.R).
 
 ## Connectivity surface modelling and polygon selection
 
@@ -32,7 +32,7 @@ The procedure was then iterated five additional times. In each iteration, the pr
 
 After selecting the best-performing iteration, the resulting connectivity surface was visualized together with the inferred least-cost paths and coastlines. Four focal polygons (`pol1b.kml` to `pol4b.kml`) were then overlaid on the regional connectivity surface. These polygons represented sectors of comparatively high predicted connectivity and were used as the spatial units for extracting seasonal environmental summaries. The extracted polygon-specific environmental time series constituted the covariates subsequently used in the Random Forest models fitted to the recruitment series of the different herring stocks.
 
-Associated script: [`model_connectivity_surface.R`](model_connectivity_surface.R).
+Associated script: [`/model_connectivity_surface.R`](https://github.com/kittlein/Connectivity/blob/master//model_connectivity_surface.R).
 
 ## Seasonal extraction of polygon-based environmental covariates for recruitment models
 
@@ -40,7 +40,7 @@ Monthly environmental values were extracted for each focal polygon from three Ne
 
 For every monthly raster layer, mean values were extracted within each polygon using area-weighted averaging so that partial cell overlap contributed proportionally to the polygon summary. The resulting monthly records were then assigned to year and month, and aggregated into two seasonal windows defined a priori for the recruitment analyses: spring (April-June) and fall (October-December). For each year, polygon, season, and environmental variable, the mean across the corresponding three monthly values was calculated. This procedure produced a polygon-specific seasonal time series for chlorophyll-*a*, sea surface temperature, sea surface salinity, and the zonal and meridional current components. The final output was organized in a wide table with one row per year and one column per variable-polygon-season combination, and this table was used as the predictor matrix for fitting the recruitment time-series models.
 
-Associated script: [`extract_seasonal_polygon_covariates.R`](extract_seasonal_polygon_covariates.R).
+Associated script: [`/extract_seasonal_polygon_covariates.R`](https://github.com/kittlein/Connectivity/blob/master//extract_seasonal_polygon_covariates.R).
 
 ## Recruitment time-series modelling
 
@@ -50,14 +50,13 @@ For the main stock-specific fits, Random Forest models were estimated with the `
 
 To evaluate the robustness of predictor effects, a repeated analysis of permutation importance was also performed for each stock. Using the stock-specific tuning parameters selected above, 200 replicate forests were fitted and permutation importance was computed for every predictor in every replicate. Importance values were summarized across replicates by their mean, standard deviation, median, 2.5% quantile, 97.5% quantile, and the probability of taking positive values. Mean positive importance values were additionally rescaled to relative percentages within each stock, thereby providing a standardized measure of the contribution of lagged catch and environmental covariates to recruitment variability.
 
-Associated script: [`fit_recruitment_time_series.R`](fit_recruitment_time_series.R).
+Associated script: [`/fit_recruitment_time_series.R`](https://github.com/kittlein/Connectivity/blob/master//fit_recruitment_time_series.R).
 
 ## Code annex
 
-Curated versions of the core analysis scripts are distributed as separate files in the `` directory. The scripts were simplified to retain only the steps required for the main analyses and to remove auxiliary plotting and post-processing routines on which the tables and figures presented in the main manuscript are derived.
+Curated versions of the core analysis scripts are distributed as separate files in the `/` directory. The scripts were simplified to retain only the steps required for the main analyses and to remove auxiliary plotting and post-processing routines on which the tables and figures presented in the main manuscript are derived.
 
-- Neutral-locus filtering and directional connectivity estimation: [`filter_neutral_loci_and_estimate_connectivity.R`](filter_neutral_loci_and_estimate_connectivity.R)
-- Iterative connectivity-surface modelling: [`model_connectivity_surface.R`](model_connectivity_surface.R)
-- Seasonal extraction of polygon-based environmental covariates: [`extract_seasonal_polygon_covariates.R`](extract_seasonal_polygon_covariates.R)
-- Recruitment time-series modelling: [`fit_recruitment_time_series.R`](fit_recruitment_time_series.R)
-
+- Neutral-locus filtering and directional connectivity estimation: [`/filter_neutral_loci_and_estimate_connectivity.R`](https://github.com/kittlein/Connectivity/blob/master//filter_neutral_loci_and_estimate_connectivity.R)
+- Iterative connectivity-surface modelling: [`/model_connectivity_surface.R`](https://github.com/kittlein/Connectivity/blob/master//model_connectivity_surface.R)
+- Seasonal extraction of polygon-based environmental covariates: [`/extract_seasonal_polygon_covariates.R`](https://github.com/kittlein/Connectivity/blob/master//extract_seasonal_polygon_covariates.R)
+- Recruitment time-series modelling: [`/fit_recruitment_time_series.R`](https://github.com/kittlein/Connectivity/blob/master//fit_recruitment_time_series.R)
