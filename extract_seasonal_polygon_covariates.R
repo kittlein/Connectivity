@@ -96,7 +96,7 @@ extract_monthly_polygon_means <- function(netcdf_file, source_name, variable_nam
   extracted_values$polygon_id <- polygons_sf$polygon_id[extracted_values$ID]
 
   extracted_values |>
-    select(-ID) |>
+    dplyr::select(-ID) |>
     pivot_longer(
       cols = starts_with(source_name),
       names_to = "layer_name",
@@ -109,7 +109,7 @@ extract_monthly_polygon_means <- function(netcdf_file, source_name, variable_nam
       month = lubridate::month(date),
       variable = variable_name
     ) |>
-    select(polygon_id, variable, date, year, month, mean_value)
+    dplyr::select(polygon_id, variable, date, year, month, mean_value)
 }
 
 polygons_sf <- read_polygons(polygon_files)
@@ -144,7 +144,7 @@ seasonal_covariates_long <- monthly_covariates |>
 
 seasonal_covariates_wide <- seasonal_covariates_long |>
   mutate(column_name = paste(variable, polygon_id, season, sep = "_")) |>
-  select(year, column_name, mean_value) |>
+  dplyr::select(year, column_name, mean_value) |>
   pivot_wider(
     names_from = column_name,
     values_from = mean_value
@@ -161,7 +161,7 @@ ordered_columns <- expand.grid(
   pull(column_name)
 
 seasonal_covariates_wide <- seasonal_covariates_wide |>
-  select(year, any_of(ordered_columns))
+  dplyr::select(year, any_of(ordered_columns))
 
 openxlsx::write.xlsx(seasonal_covariates_wide, output_file)
 message("Saved seasonal polygon covariates to: ", output_file)

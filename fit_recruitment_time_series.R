@@ -55,7 +55,7 @@ build_stock_dataset <- function(stock_name, recruitment_data, catch_data, enviro
 
 fit_random_forest_model <- function(stock_data) {
   model_data <- stock_data |>
-    select(-Year)
+    dplyr::select(-Year)
 
   tuning <- tune.rfsrc(
     Recruitment ~ ., 
@@ -83,7 +83,7 @@ fit_random_forest_model <- function(stock_data) {
 
 summarize_variable_importance <- function(stock_data, tuned_nodesize, tuned_mtry, n_replicates) {
   model_data <- stock_data |>
-    select(-Year)
+    dplyr::select(-Year)
 
   importance_replicates <- map_dfr(seq_len(n_replicates), function(replicate_id) {
     forest <- rfsrc(
@@ -176,7 +176,7 @@ importance_summary_long <- map_dfr(model_results, function(result) {
 })
 
 importance_summary_wide <- importance_summary_long |>
-  select(stock, variable, relative_importance) |>
+  dplyr::select(stock, variable, relative_importance) |>
   pivot_wider(
     names_from = stock,
     values_from = relative_importance
