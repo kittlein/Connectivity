@@ -1,12 +1,16 @@
-\### Pairwise genetic differentiation
+\# Supplementary Material
 
 
 
-Pairwise FST estimates were obtained using:
+\## Finding where environment impacts recruitment: contributions of Population Genetics to Fisheries Biology
 
 
 
-\- \[FST estimation script](02\_pairwise\_fst.R)
+Marcelo J. Kittlein
 
-\- \[Pairwise FST estimates](pairwise\_fst.csv)
+
+
+This document provides supplementary material associated with the manuscript \*Finding where environment impacts recruitment: contributions of Population Genetics to Fisheries Biology\*.
+
+
 
