@@ -1,0 +1,39 @@
+sample,location,season,sample_size,longitude,latitude
+PB2_Iceland_Atlantic_Spring,"Iceland, Höfn",Spring,100,-12.58,65.49
+HGS19_TeelinBay_Atlantic_Winter,Teelin Bay,Winter,47,-8.6305,54.6266
+HGS21_Hebrides_Atlantic_Mixed,West of Hebrides,Mixed,50,-7.233,58.166
+HGS18_CelticSea_Atlantic_AutumnWinter,Celtic Sea,Winter,50,-6.506,51.591
+HGS20_CapeWrath_Atlantic_Spring,Isle of Skye,Spring,50,-6.1268,57.4086
+HGS23_Clyde_Atlantic_Spring,"Ballantrae, Clyde",Spring,39,-5.0357,55.136
+HGS22_CapeWrath_Atlantic_Autumn,Cape Wrath,Autumn,49,-4.33332298897408,58.6666647258558
+HGS17_IsleOfMan_IrishSea_Autumn,"Douglas Bank, Isle of Man",Autumn,50,-4.37,54.06
+HGS16_Orkney_NorthSea_Autumn,Orkney,Autumn,49,-2,59
+HGS10_Downs_EnglishChannel_Winter,Downs,Winter,55,1.896,51.3376
+HGS25_Lindas_Atlantic_Spring,Lindås,Spring,50,4.83334421773981,60.7499979304881
+N_NorthSea_Atlantic_Autumn,North Sea,Autumn,49,6.1,58.06
+HGS27_Gloppen_Atlantic_Spring,Gloppen,Spring,50,5.33334424719694,61.9166645250822
+HGS26_Lusterfjorden_Atlantic_Spring,Lusterfjorden,Spring,50,6.33334430611118,62.416664494194
+HGS11_RingkobingFjord_NorthSea_Spring,Ringköbing Fjord,Spring,40,8.08334440921111,55.9999982239264
+HGS24_Landvik_Atlantic_Spring,Landvik,Spring,50,8.502,58.32
+HGS15_NSSH_Atlantic_Spring,Norway,Spring,43,9.473,67.463
+HGS6_Schlei_Baltic_Spring,Schlei,Spring,50,9.91667785055389,54.5833316447764
+Q_Norway_Atlantic_Atlantic_Spring,Norway,Spring,49,10.15,64.52
+O_Hamburgsund_Atlantic_Spring,Hamburgsund,Spring,49,11.13,58.3
+PB10_Skagerrak_Atlantic_Spring,"Skagerrak, Brofjorden",Spring,100,11.21,58.19
+H_Fehmarn_Baltic_Autumn,Fehmarn,Autumn,50,11.3,54.5
+HGS8_KattegatNorth_Atlantic_Spring,Kattegat North,Spring,41,11.4,57.4
+PB9_Kattegat_Atlantic_Spring,"Kattegat, Björköfjorden",Spring,100,11.42,57.43
+J_Traslovslage_Baltic_Spring,Träslövsläge,Spring,50,12.11,57.03
+HGS71_Rugen_Baltic_Spring,Rügen,Spring,40,13.4688,54.1437
+TysklandS18_Germany_Baltic,Ariadnegrund,Spring,110,13.583,54.217
+HGS12_BornholmBasin_Baltic_Autumn,Bornholm Basin,Autumn,45,15.2235,55.301
+PB12_Karlskrona_Baltic_Spring,Karlskrona,Spring,100,15.33,56.1
+PN3_CentralBaltic_Baltic_Spring,Central Baltic,Spring,100,15.51,55.24
+G_Gamleby_Baltic_Spring,Gamleby,Spring,49,16.666678248225,57.4999981312617
+PB11_Kalmar_Baltic_Spring,Kalmar,Spring,100,17.07,57.39
+PB5_Galve_Baltic_Spring,Gävle,Spring,100,17.4166782924107,60.6666646023028
+PB4_Hudiksvall_Baltic_Spring,Hudiksvall,Spring,100,17.3,61.45
+PB1_HastKar_Baltic_Spring,Hästskär,Spring,50,17.9166783218678,60.416664617747
+B_Vaxholm_Baltic_Spring,Vaxholm,Spring,50,18.1666783365964,59.0833313667823
+A_Kalix_Baltic_Spring,Kalix,Spring,47,22.43,65.52
+HGS2_Riga_Baltic_Spring,Gulf of Riga,Spring,100,24.5833453812961,58.0833314285587

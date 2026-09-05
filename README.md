@@ -56,7 +56,7 @@ The analysis generates:
 
 The complete genomic filtering and pair-wise $F_{ST}$ estimation workflow is available in:
 
-[Filter genomic data and estimate pair-wise FST.r](Filter%20genomic%20data%20and%20estimate%20pair-wise%20FST.r)
+[Filter genomic data and estimate pair-wise FST.r](Filter_genomic_data_and_estimate_pair-wise_FST.r)
 
 ## Isolation by sea distance
 
@@ -87,7 +87,7 @@ of the relationship between shortest sea distance and linearized $F_{ST}$.
 
 The complete isolation-by-distance analysis is available in:
 
-[Evaluate isolation by sea distance.r](Evaluate%20isolation%20by%20sea%20distance.r)
+[Evaluate isolation by sea distance.r](Evaluate_isolation_by_sea_distance.r)
 
 ## Iterative Random Forest resistance-surface analysis
 
@@ -141,4 +141,93 @@ final predicted resistance surface was also exported as a GeoTIFF file.
 The complete iterative shortest-path and Random Forest procedure is
 available in:
 
-[Iterative random forest resistance surface.r](Iterative%20random%20forest%20resistance%20surface.r)
+[Iterative random forest resistance surface.r](Iterative_random_forest_resistance_surface.r)
+
+## Stock-specific FST extremes
+
+To identify spatial locations representing the lowest and highest predicted genetic differentiation within each herring management unit, the final predicted FST surface was intersected separately with the nine ICES stock polygons.
+
+For each stock polygon, the raster was cropped and masked to the polygon extent, and all cells with valid predicted FST values were evaluated. The cell with the minimum predicted FST and the cell with the maximum predicted FST were then identified independently. Their geographic coordinates and corresponding raster-cell identifiers were retained for downstream extraction of stock-specific oceanographic conditions.
+
+This procedure provides a reproducible, stock-specific spatial rule for selecting contrasting locations along the predicted differentiation surface, rather than relying on a common set of external reference points for all management units.
+
+The implementation is available in:
+
+[`extract_stock_fst_extremes.r`](extract_stock_fst_extremes.r)
+
+The script generates tables containing, for each stock:
+
+- stock identifier
+- minimum or maximum predicted FST
+- raster cell identifier
+- longitude
+- latitude
+
+The selected coordinates can subsequently be used to extract temporal environmental information from oceanographic products for recruitment modelling.
+
+## Annual oceanographic extremes at stock-specific FST cells
+
+Annual oceanographic conditions were extracted at the two stock-specific
+locations defined by the minimum and maximum predicted FST values within each
+ICES management polygon.
+
+Monthly oceanographic data for 1993–2025 were obtained from NetCDF files stored
+in `ocean_monthly.7z`. The variables included chlorophyll-a concentration,
+sea-surface temperature, sea-surface salinity, meridional current velocity, and
+zonal current velocity.
+
+For each stock, variable, year, and FST location, the annual minimum and maximum
+values were calculated from the 12 monthly observations. This produced 20
+environmental predictors per stock and year:
+
+- five oceanographic variables
+- two annual summaries: minimum and maximum
+- two spatial locations: minimum-FST and maximum-FST cells
+
+Predictor names encode these three components. For example,
+`min_uo_maxFST` denotes the annual minimum zonal current velocity at the cell
+with the maximum predicted FST within that stock polygon.
+
+The NetCDF files are extracted from the compressed archive one at a time to a
+temporary directory, processed, and removed before the next variable is read.
+This avoids storing all uncompressed oceanographic files simultaneously.
+
+The resulting Excel workbook contains one worksheet for each of the nine herring
+stocks, with one row per year and the 20 annual oceanographic predictors. It
+also includes supporting worksheets containing the extraction coordinates,
+incomplete-year diagnostics, and the long-format annual data.
+
+The implementation is available in:
+
+[`extract_annual_oceanographic_extremes_at_fst_cells.r`](extract_annual_oceanographic_extremes_at_fst_cells.r)
+
+## Monthly oceanographic predictors and recruitment modelling
+
+Monthly chlorophyll-a, zonal and meridional surface-current velocity,
+sea-surface salinity, and sea-surface temperature were extracted at the
+minimum- or maximum-\(F_{ST}\) location selected for each herring stock.
+
+For each stock, recruitment was related to environmental conditions using
+moving monthly windows across a range of temporal lags. Recruitment age was
+incorporated into the lag structure, and chlorophyll-a was allowed to occur
+later than the physical oceanographic variables through an additional delay
+parameter.
+
+Candidate predictors were screened with Boruta, and model performance was evaluated using both
+fitted and out-of-bag \(R^2\). The best temporal configuration was selected
+according to out-of-bag performance.
+
+Accumulated local effects (ALE) were calculated for the predictors retained in
+the selected model. Spatial specificity was additionally evaluated by fitting
+the selected model configuration at up to 1000 randomly sampled marine raster
+cells within the corresponding stock polygon. This comparison keeps predictor
+selection, temporal configuration, Random Forest hyperparameters, and
+recruitment years fixed.
+
+For each stock, the script saves an `RDS` object containing model settings,
+selected predictors, fitted and OOB predictions, model-search results, ALE
+objects, spatial-randomization results, and information required to reproduce
+the associated figures without repeating the complete analysis.
+
+Associated script:
+[`monthly_ocean_and_recruitmen.r`](monthly_ocean_and_recruitment.r)
